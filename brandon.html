@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envelope Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1; /* Light pink background */
+            margin: 0;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 370px;
+            height: 250px;
+        }
+
+        /* Top flap of the envelope */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 185px solid transparent;
+            border-right: 185px solid transparent;
+            border-bottom: 73px solid #ff0000;
+            z-index: 0; /* Behind the letter */
+        }
+
+        /* Letter */
+        .letter {
+            width: 325px;
+            height: 250px;
+            background-color: white;
+            position: relative;
+            top: 20px;
+            left: 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: #ff4d4d;
+            border: 2px solid #ff4d4d;
+            transform: translateY(50px);
+            animation: slideUp 2s ease-out forwards;
+            z-index: 1; /* Above top flap but under the bottom */
+            font-family: "Pacifico", cursive;
+        }
+
+        /* Bottom part of the envelope */
+        .envelope-bottom {
+            width: 370px;  /* Same width as the flap */
+            height: 200px; /* Proportional height */
+            background-color: #ff0000; /* Red envelope color */
+            position: absolute;
+            bottom: 0;
+            border-radius: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 2; /* Covers the bottom part of the letter */
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(-25px);
+            }
+            to {
+                transform: translateY(-150px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope-container">
+        <div class="envelope"></div>  <!-- Envelope (for the top flap) -->
+        <div class="letter">Happy Birthday!</div> <!-- Letter -->
+        <div class="envelope-bottom"></div> <!-- Bottom part (covers letter partially) -->
+    </div>
+
+</body>
+</html>
